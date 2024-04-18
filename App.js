@@ -1,25 +1,34 @@
+import 'react-native-gesture-handler';
 import React from 'react';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
 import Home from './src/screens/Home';
+import AttractionDetails from './src/screens/AttractionDetails';
+import Gallery from './src/screens/Gallery';
+import Map from './src/screens/Map';
 
+const Stack = createStackNavigator();
+
+const appTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#ffffff',
+  },
+};
 function App() {
   return (
-    <>
-      <Home text="My first components" />
-    </>
+    <NavigationContainer theme={appTheme}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="AttractionDetails" component={AttractionDetails} />
+        <Stack.Screen name="Gallery" component={Gallery} />
+        <Stack.Screen name="Map" component={Map} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  safeview: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'yellow',
-  },
-});
 
 export default App;
